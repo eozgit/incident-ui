@@ -1,0 +1,40 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Reported To</th>
+            <th scope="col">Location</th>
+            <th scope="col">Incident Date</th>
+            <th scope="col">Reported By</th>
+            <th scope="col">Nature</th>
+            <th scope="col">Detail</th>
+            <!-- <th scope="col">Reviewer</th>
+            <th scope="col">Complete Date</th>
+            <th scope="col">Experiencing Concerns Listened To</th>
+            <th scope="col">Experiencing Satisfied</th>
+            <th scope="col">Displaying Concerns Listened To</th>
+            <th scope="col">Displaying Satisfied</th>
+            <th scope="col">Procedures</th>
+            <th scope="col">Conclusion</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let incident of incidents;">
+            <th scope="row">{{ incident.id }}</th>
+            <td> {{ incident.reportedTo }} </td>
+            <td> {{ incident.location }} </td>
+            <td> {{ incident.incidentDate }} </td>
+            <td> {{ incident.reportedBy }} </td>
+            <td> {{ incident.nature }} </td>
+            <td> {{ incident.detail }} </td>
+            <!-- <td> {{ incident.reviewer }} </td>
+            <td> {{ incident.completeDate }} </td>
+            <td> {{ incident.experiencingConcernsListenedTo }} </td>
+            <td> {{ incident.experiencingSatisfied }} </td>
+            <td> {{ incident.displayingConcernsListenedTo }} </td>
+            <td> {{ incident.displayingSatisfied }} </td>
+            <td> {{ incident.procedures }} </td>
+            <td> {{ incident.conclusion }} </td> -->
+        </tr>
+    </tbody>
+</table>
