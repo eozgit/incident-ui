@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Envelope, Incident } from './incident';
+import Incident, { Envelope } from './incident';
 import { catchError } from 'rxjs/operators';
 
 
@@ -22,7 +22,6 @@ export class ApiClientService {
   }
 
   addIncident(incident: Incident): Observable<Envelope> {
-    console.log('adding incident..')
     return this.http.post<Envelope>(this.apiUrl, { method: 'add', incident })
       .pipe(
         catchError(this.handleError)

@@ -1,4 +1,6 @@
-export class Incident {
+import Person from './person';
+
+export default class Incident {
     id: number;
     reportedTo: string;
     location: string;
@@ -14,6 +16,11 @@ export class Incident {
     displayingSatisfied: boolean;
     procedures: string;
     conclusion: number;
+
+    pupilsExperiencing: Person[];
+    staffExperiencing: Person[];
+    pupilsDisplaying: Person[];
+    staffDisplaying: Person[];
 }
 
 export class Envelope {

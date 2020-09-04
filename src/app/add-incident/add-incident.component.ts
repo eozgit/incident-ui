@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ApiClientService } from '../api-client.service';
 import * as constants from '../constants';
-import { Incident, Envelope } from '../incident';
+import Incident, { Envelope } from '../incident';
+import Person from '../person';
 
 @Component({
   selector: 'app-add-incident',
@@ -30,10 +31,10 @@ export class AddIncidentComponent implements OnInit {
       reportedBy: ['']
     }),
     allegedIncident: this.fb.group({
-      pupilsExperiencing: [''],
-      staffExperiencing: [''],
-      pupilsDisplaying: [''],
-      staffDisplaying: ['']
+      pupilsExperiencing: [[]],
+      staffExperiencing: [[]],
+      pupilsDisplaying: [[]],
+      staffDisplaying: [[]]
     }),
     natureOfIncident: this.fb.group({
       nature: [''],
@@ -52,7 +53,17 @@ export class AddIncidentComponent implements OnInit {
     incident.reportedBy = this.addIncidentForm.value.basicInfo.reportedBy;
     incident.nature = this.addIncidentForm.value.natureOfIncident.nature;
     incident.detail = this.addIncidentForm.value.natureOfIncident.detail;
+    incident.pupilsExperiencing = this.addIncidentForm.value.allegedIncident.pupilsExperiencing.map(this.toPerson);
+    incident.staffExperiencing = this.addIncidentForm.value.allegedIncident.staffExperiencing.map(this.toPerson);
+    incident.pupilsDisplaying = this.addIncidentForm.value.allegedIncident.pupilsDisplaying.map(this.toPerson);
+    incident.staffDisplaying = this.addIncidentForm.value.allegedIncident.staffDisplaying.map(this.toPerson);
     this.api.addIncident(incident).subscribe((envelope: Envelope) => this.router.navigate(['/list']));
+  }
+
+  toPerson(name) {
+    const person = new Person();
+    person.name = name;
+    return person;
   }
 
 }

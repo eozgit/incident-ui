@@ -1,1 +1,52 @@
-<p>review-incident works!</p>
+<div class="col-8 mb-4" *ngIf="incident">
+    <h6 class="mt-4">Basic Info</h6>
+    <label class="mt-3 font-weight-light">Reported to:</label>
+    <div class="ml-3">{{ incident.reportedTo }}</div>
+    <label class="mt-3 font-weight-light">Location:</label>
+    <div class="ml-3">{{ incident.location }}</div>
+    <label class="mt-3 font-weight-light">Incident Date:</label>
+    <div class="ml-3">{{ incident.incidentDate | date }}</div>
+    <label class="mt-3 font-weight-light">Reported by:</label>
+    <div class="ml-3">{{ incident.reportedBy }}</div>
+
+    <h6 class="mt-4">Alleged Incident</h6>
+    <label class="mt-3 font-weight-light">Pupils experiencing:</label>
+    <ul class="list-unstyled ml-3">
+        <li *ngFor="let person of incident.pupilsExperiencing">{{ person.name }}</li>
+    </ul>
+    <label class="mt-3 font-weight-light">Staff experiencing:</label>
+    <ul class="list-unstyled ml-3">
+        <li *ngFor="let person of incident.staffExperiencing">{{ person.name }}</li>
+    </ul>
+    <label class="mt-3 font-weight-light">Pupils displaying:</label>
+    <ul class="list-unstyled ml-3">
+        <li *ngFor="let person of incident.pupilsDisplaying">{{ person.name }}</li>
+    </ul>
+    <label class="mt-3 font-weight-light">Staff displaying:</label>
+    <ul class="list-unstyled ml-3">
+        <li *ngFor="let person of incident.staffDisplaying">{{ person.name }}</li>
+    </ul>
+
+    <h6 class="mt-4">Nature of Incident</h6>
+    <label class="mt-3 font-weight-light">Nature of Incident:</label>
+    <div class="ml-3">{{ incident.nature }}</div>
+    <label class="mt-3 font-weight-light">Detail:</label>
+    <div class="ml-3">{{ incident.detail }}</div>
+
+
+    <form [formGroup]="reviewIncidentForm" (ngSubmit)="onSubmit()">
+        <div formGroupName="monitorReview">
+            <h6 class="my-4">Monitor/Review</h6>
+            <div class="form-group">
+                <label>
+                    Reviewer:
+                </label>
+                <select formControlName="reviewer" class="custom-select">
+                    <option value="" disabled>Select</option>
+                    <option *ngFor="let member of constants.staff">{{ member }}</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" [disabled]="!reviewIncidentForm.valid" class="btn btn-primary">Submit</button>
+    </form>
+</div>

@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table table-striped mb-4">
     <thead>
         <tr>
             <th scope="col">Id</th>
@@ -7,7 +7,8 @@
             <th scope="col">Incident Date</th>
             <th scope="col">Reported By</th>
             <th scope="col">Nature</th>
-            <th scope="col">Detail</th>
+            <th scope="col">Review</th>
+            <!-- <th scope="col">Detail</th> -->
             <!-- <th scope="col">Reviewer</th>
             <th scope="col">Complete Date</th>
             <th scope="col">Experiencing Concerns Listened To</th>
@@ -26,7 +27,11 @@
             <td> {{ incident.incidentDate | date }} </td>
             <td> {{ incident.reportedBy }} </td>
             <td> {{ incident.nature }} </td>
-            <td> {{ incident.detail }} </td>
+            <td *ngIf="incident.conclusion === 0">
+                <a [routerLink]="['/review', incident.id]">Review</a>
+            </td>
+            <td *ngIf="incident.conclusion !== 0">Reviewed</td>
+            <!-- <td> {{ incident.detail }} </td> -->
             <!-- <td> {{ incident.reviewer }} </td>
             <td> {{ incident.completeDate }} </td>
             <td> {{ incident.experiencingConcernsListenedTo }} </td>
