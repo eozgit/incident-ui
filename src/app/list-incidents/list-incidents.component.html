@@ -23,7 +23,7 @@
             <th scope="row">{{ incident.id }}</th>
             <td> {{ incident.reportedTo }} </td>
             <td> {{ incident.location }} </td>
-            <td> {{ incident.incidentDate }} </td>
+            <td> {{ incident.incidentDate | date }} </td>
             <td> {{ incident.reportedBy }} </td>
             <td> {{ incident.nature }} </td>
             <td> {{ incident.detail }} </td>

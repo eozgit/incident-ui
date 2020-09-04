@@ -8,7 +8,10 @@
                         <label>
                             Reported to:
                         </label>
-                        <input type="text" formControlName="reportedTo" class="form-control">
+                        <select formControlName="reportedTo" class="custom-select">
+                            <option value="" disabled>Select</option>
+                            <option *ngFor="let member of constants.staff">{{ member }}</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>
@@ -18,6 +21,26 @@
                             <option value="" disabled>Select location</option>
                             <option *ngFor="let location of constants.locations">{{ location }}</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Incident Date:
+                        </label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                formControlName="incidentDate" ngbDatepicker #d="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                                    <span>📅</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Reported by:
+                        </label>
+                        <input type="text" formControlName="reportedBy" class="form-control">
                     </div>
                 </div>
                 <div formGroupName="allegedIncident">
@@ -32,10 +55,26 @@
                     </div>
                     <div class="form-group">
                         <label>
+                            Staff experiencing:
+                        </label>
+                        <select formControlName="staffExperiencing" class="custom-select" multiple>
+                            <option *ngFor="let member of constants.staff">{{ member }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
                             Pupils displaying:
                         </label>
                         <select formControlName="pupilsDisplaying" class="custom-select" multiple>
                             <option *ngFor="let pupil of constants.pupils">{{ pupil }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Staff displaying:
+                        </label>
+                        <select formControlName="staffDisplaying" class="custom-select" multiple>
+                            <option *ngFor="let member of constants.staff">{{ member }}</option>
                         </select>
                     </div>
                 </div>
