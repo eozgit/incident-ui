@@ -13,20 +13,20 @@
     <h6 class="mt-4">Person(s) experiencing</h6>
     <label class="mt-3 font-weight-light">Pupils:</label>
     <ul class="list-unstyled ml-3">
-        <li *ngFor="let person of incident.pupilsExperiencing">{{ person.name }}</li>
+        <li *ngFor="let person of pupilsExperiencing">{{ person.name }}</li>
     </ul>
     <label class="mt-3 font-weight-light">Staff:</label>
     <ul class="list-unstyled ml-3">
-        <li *ngFor="let person of incident.staffExperiencing">{{ person.name }}</li>
+        <li *ngFor="let person of staffExperiencing">{{ person.name }}</li>
     </ul>
     <h6 class="mt-4">Person(s) displaying</h6>
     <label class="mt-3 font-weight-light">Pupils:</label>
     <ul class="list-unstyled ml-3">
-        <li *ngFor="let person of incident.pupilsDisplaying">{{ person.name }}</li>
+        <li *ngFor="let person of pupilsDisplaying">{{ person.name }}</li>
     </ul>
     <label class="mt-3 font-weight-light">Staff:</label>
     <ul class="list-unstyled ml-3">
-        <li *ngFor="let person of incident.staffDisplaying">{{ person.name }}</li>
+        <li *ngFor="let person of staffDisplaying">{{ person.name }}</li>
     </ul>
 
     <h5 class="mt-4">Nature of Incident</h5>
@@ -97,6 +97,26 @@
                     <option value="" disabled>Select</option>
                     <option *ngFor="let concl of constants.conclusions">{{ concl }}</option>
                 </select>
+            </div>
+            <h6 class="my-4">Person(s) Experiencing</h6>
+            <div formGroupName="actions">
+                <div class="form-group" *ngFor="let person of personsExperiencing; let i = index">
+                    <label>{{ person.name }}</label>
+                    <select [formControlName]="person.id" class="custom-select" required>
+                        <option value="" disabled>Select</option>
+                        <option *ngFor="let action of constants.actions" [value]="action">{{ action }}</option>
+                    </select>
+                </div>
+            </div>
+            <h6 class="my-4">Person(s) Displaying</h6>
+            <div formGroupName="actions">
+                <div class="form-group" *ngFor="let person of personsDisplaying; let i = index">
+                    <label>{{ person.name }}</label>
+                    <select [formControlName]="person.id" class="custom-select" required>
+                        <option value="" disabled>Select</option>
+                        <option *ngFor="let action of constants.actions" [value]="action">{{ action }}</option>
+                    </select>
+                </div>
             </div>
         </div>
         <button type="submit" [disabled]="!reviewIncidentForm.valid" class="btn btn-primary">Submit</button>

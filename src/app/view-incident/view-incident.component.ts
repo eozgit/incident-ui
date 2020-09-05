@@ -23,4 +23,22 @@ export class ViewIncidentComponent implements OnInit {
     });
   }
 
+
+  get pupilsExperiencing() {
+    return this.incident.parties.filter(person => person.category === 'pupil' && person.side === 'experiencing');
+  }
+
+  get staffExperiencing() {
+    return this.incident.parties.filter(person => person.category === 'staff' && person.side === 'experiencing');
+  }
+
+
+  get pupilsDisplaying() {
+    return this.incident.parties.filter(person => person.category === 'pupil' && person.side === 'displaying');
+  }
+
+  get staffDisplaying() {
+    return this.incident.parties.filter(person => person.category === 'staff' && person.side === 'displaying');
+  }
+
 }

@@ -17,10 +17,7 @@ export default class Incident {
     procedures: string;
     conclusion: number;
 
-    pupilsExperiencing: Person[];
-    staffExperiencing: Person[];
-    pupilsDisplaying: Person[];
-    staffDisplaying: Person[];
+    parties: Person[];
 }
 
 export class Envelope {

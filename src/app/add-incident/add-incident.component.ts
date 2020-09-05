@@ -43,26 +43,35 @@ export class AddIncidentComponent implements OnInit {
   });
 
   onSubmit() {
-    const date = this.addIncidentForm.value.basicInfo.incidentDate;
-    const incidentDate = new Date(date.year, date.month - 1, date.day);
+
+    const { basicInfo, allegedIncident, natureOfIncident } = this.addIncidentForm.getRawValue();
+
+    const { year, month, day } = basicInfo.incidentDate;
+    const incidentDate = new Date(year, month - 1, day);
 
     const incident = new Incident();
-    incident.reportedTo = this.addIncidentForm.value.basicInfo.reportedTo;
-    incident.location = this.addIncidentForm.value.basicInfo.location;
+    incident.reportedTo = basicInfo.reportedTo;
+    incident.location = basicInfo.location;
     incident.incidentDate = incidentDate;
-    incident.reportedBy = this.addIncidentForm.value.basicInfo.reportedBy;
-    incident.nature = this.addIncidentForm.value.natureOfIncident.nature;
-    incident.detail = this.addIncidentForm.value.natureOfIncident.detail;
-    incident.pupilsExperiencing = this.addIncidentForm.value.allegedIncident.pupilsExperiencing.map(this.toPerson);
-    incident.staffExperiencing = this.addIncidentForm.value.allegedIncident.staffExperiencing.map(this.toPerson);
-    incident.pupilsDisplaying = this.addIncidentForm.value.allegedIncident.pupilsDisplaying.map(this.toPerson);
-    incident.staffDisplaying = this.addIncidentForm.value.allegedIncident.staffDisplaying.map(this.toPerson);
+    incident.reportedBy = basicInfo.reportedBy;
+    incident.nature = natureOfIncident.nature;
+    incident.detail = natureOfIncident.detail;
+
+    const pupilsExperiencing = allegedIncident.pupilsExperiencing.map(name => this.GetPerson(name, 'pupil', 'experiencing'));
+    const staffExperiencing = allegedIncident.staffExperiencing.map(name => this.GetPerson(name, 'staff', 'experiencing'));
+    const pupilsDisplaying = allegedIncident.pupilsDisplaying.map(name => this.GetPerson(name, 'pupil', 'displaying'));
+    const staffDisplaying = allegedIncident.staffDisplaying.map(name => this.GetPerson(name, 'staff', 'displaying'));
+
+    incident.parties = [...pupilsExperiencing, ...staffExperiencing, ...pupilsDisplaying, ...staffDisplaying];
+
     this.api.addIncident(incident).subscribe((envelope: Envelope) => this.router.navigate(['/list']));
   }
 
-  toPerson(name) {
+  GetPerson(name: string, category: string, side: string) {
     const person = new Person();
     person.name = name;
+    person.category = category;
+    person.side = side;
     return person;
   }
 
