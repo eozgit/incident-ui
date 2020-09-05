@@ -3,32 +3,26 @@
         <div class="col-8">
             <form [formGroup]="addIncidentForm" (ngSubmit)="onSubmit()">
                 <div formGroupName="basicInfo">
-                    <h6 class="my-4">Basic Info</h6>
+                    <h5 class="my-4">Basic Info</h5>
                     <div class="form-group">
-                        <label>
-                            Reported to:
-                        </label>
-                        <select formControlName="reportedTo" class="custom-select">
+                        <label>Reported to:</label>
+                        <select formControlName="reportedTo" class="custom-select" required>
                             <option value="" disabled>Select</option>
                             <option *ngFor="let member of constants.staff">{{ member }}</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>
-                            Location:
-                        </label>
-                        <select formControlName="location" class="custom-select">
+                        <label>Incident Location:</label>
+                        <select formControlName="location" class="custom-select" required>
                             <option value="" disabled>Select location</option>
                             <option *ngFor="let location of constants.locations">{{ location }}</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>
-                            Incident Date:
-                        </label>
+                        <label>Incident Date:</label>
                         <div class="input-group">
                             <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                                formControlName="incidentDate" ngbDatepicker #d="ngbDatepicker">
+                                formControlName="incidentDate" ngbDatepicker #d="ngbDatepicker" required>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
                                     <span>📅</span>
@@ -37,62 +31,50 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>
-                            Reported by:
-                        </label>
-                        <input type="text" formControlName="reportedBy" class="form-control">
+                        <label>Reported by:</label>
+                        <textarea formControlName="reportedBy" class="form-control" required></textarea>
                     </div>
                 </div>
                 <div formGroupName="allegedIncident">
-                    <h6 class="my-4">Alleged Incident</h6>
+                    <h5 class="my-4">Alleged Incident</h5>
+                    <h6 class="my-4">Person(s) Experiencing</h6>
                     <div class="form-group">
-                        <label>
-                            Pupils experiencing:
-                        </label>
+                        <label>Pupils:</label>
                         <select formControlName="pupilsExperiencing" class="custom-select" multiple>
                             <option *ngFor="let pupil of constants.pupils">{{ pupil }}</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>
-                            Staff experiencing:
-                        </label>
+                        <label>Staff:</label>
                         <select formControlName="staffExperiencing" class="custom-select" multiple>
                             <option *ngFor="let member of constants.staff">{{ member }}</option>
                         </select>
                     </div>
+                    <h6 class="my-4">Person(s) Displaying</h6>
                     <div class="form-group">
-                        <label>
-                            Pupils displaying:
-                        </label>
+                        <label>Pupils:</label>
                         <select formControlName="pupilsDisplaying" class="custom-select" multiple>
                             <option *ngFor="let pupil of constants.pupils">{{ pupil }}</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>
-                            Staff displaying:
-                        </label>
+                        <label>Staff:</label>
                         <select formControlName="staffDisplaying" class="custom-select" multiple>
                             <option *ngFor="let member of constants.staff">{{ member }}</option>
                         </select>
                     </div>
                 </div>
                 <div formGroupName="natureOfIncident">
-                    <h6 class="my-4">Nature of Incident</h6>
+                    <h5 class="my-4">Nature of Incident</h5>
                     <div class="form-group">
-                        <label>
-                            Nature of Incident:
-                        </label>
-                        <select formControlName="nature" class="custom-select">
+                        <label>Nature of Incident:</label>
+                        <select formControlName="nature" class="custom-select" required>
                             <option value="" disabled>Select</option>
                             <option *ngFor="let nature of constants.typesOfOffence">{{ nature }}</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>
-                            Incident Detail:
-                        </label>
+                        <label>Incident Detail:</label>
                         <textarea formControlName="detail" class="form-control"></textarea>
                     </div>
                 </div>

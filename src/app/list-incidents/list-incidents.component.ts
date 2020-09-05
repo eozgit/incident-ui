@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiClientService } from '../api-client.service';
-import { Envelope, Incident } from '../incident';
+import Incident, { Envelope } from '../incident';
 
 @Component({
   selector: 'app-list-incidents',
@@ -18,7 +18,6 @@ export class ListIncidentsComponent implements OnInit {
   }
 
   listIncidents() {
-    console.log('listing incidents...');
     this.api.getIncidents().subscribe((envelope: Envelope) => this.incidents = envelope.incidents);
   }
 

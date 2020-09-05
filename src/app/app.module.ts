@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { ListIncidentsComponent } from './list-incidents/list-incidents.component';
 import { AddIncidentComponent } from './add-incident/add-incident.component';
 import { ReviewIncidentComponent } from './review-incident/review-incident.component';
+import { ViewIncidentComponent } from './view-incident/view-incident.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ReviewIncidentComponent } from './review-incident/review-incident.compo
     AppComponent,
     ListIncidentsComponent,
     AddIncidentComponent,
-    ReviewIncidentComponent
+    ReviewIncidentComponent,
+    ViewIncidentComponent
   ],
   imports: [
     BrowserModule,

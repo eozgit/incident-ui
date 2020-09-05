@@ -1,0 +1,60 @@
+<div class="col-8 mb-4" *ngIf="incident">
+    <h5 class="mt-4">Basic Info</h5>
+    <label class="mt-3 font-weight-light">Reported to:</label>
+    <div class="ml-3">{{ incident.reportedTo }}</div>
+    <label class="mt-3 font-weight-light">Incident Location:</label>
+    <div class="ml-3">{{ incident.location }}</div>
+    <label class="mt-3 font-weight-light">Incident Date:</label>
+    <div class="ml-3">{{ incident.incidentDate | date }}</div>
+    <label class="mt-3 font-weight-light">Reported by:</label>
+    <div class="ml-3">{{ incident.reportedBy }}</div>
+
+    <h5 class="mt-4">Alleged Incident</h5>
+    <h6 class="mt-4">Person(s) experiencing</h6>
+    <label class="mt-3 font-weight-light">Pupils:</label>
+    <ul class="list-unstyled ml-3">
+        <li *ngFor="let person of incident.pupilsExperiencing">{{ person.name }}</li>
+    </ul>
+    <label class="mt-3 font-weight-light">Staff:</label>
+    <ul class="list-unstyled ml-3">
+        <li *ngFor="let person of incident.staffExperiencing">{{ person.name }}</li>
+    </ul>
+    <h6 class="mt-4">Person(s) displaying</h6>
+    <label class="mt-3 font-weight-light">Pupils:</label>
+    <ul class="list-unstyled ml-3">
+        <li *ngFor="let person of incident.pupilsDisplaying">{{ person.name }}</li>
+    </ul>
+    <label class="mt-3 font-weight-light">Staff:</label>
+    <ul class="list-unstyled ml-3">
+        <li *ngFor="let person of incident.staffDisplaying">{{ person.name }}</li>
+    </ul>
+
+    <h5 class="mt-4">Nature of Incident</h5>
+    <label class="mt-3 font-weight-light">Nature of Incident:</label>
+    <div class="ml-3">{{ incident.nature }}</div>
+    <label class="mt-3 font-weight-light">Incident Detail:</label>
+    <div class="ml-3">{{ incident.detail }}</div>
+
+    <h5 class="mt-4">Monitor/Review</h5>
+    <label class="mt-3 font-weight-light">Reviewer:</label>
+    <div class="ml-3">{{ incident.reviewer }}</div>
+    <label class="mt-3 font-weight-light">Complete Date:</label>
+    <div class="ml-3">{{ incident.completeDate | date }}</div>
+    <h6 class="mt-4">Person(s) experiencing</h6>
+    <label class="mt-3 font-weight-light">Do they feel their concerns were listened to:</label>
+    <div class="ml-3">{{ incident.experiencingConcernsListenedTo }}</div>
+    <label class="mt-3 font-weight-light">Do they feel satisfied with the outcome:</label>
+    <div class="ml-3">{{ incident.experiencingSatisfied }}</div>
+    <h6 class="mt-4">Person(s) displaying</h6>
+    <label class="mt-3 font-weight-light">Do they feel their concerns were listened to:</label>
+    <div class="ml-3">{{ incident.displayingConcernsListenedTo }}</div>
+    <label class="mt-3 font-weight-light">Do they feel satisfied with the outcome:</label>
+    <div class="ml-3">{{ incident.displayingSatisfied }}</div>
+
+    <h5 class="mt-4">Action Progressed</h5>
+    <label class="mt-3 font-weight-light">Action Procedures:</label>
+    <div class="ml-3">{{ incident.procedures }}</div>
+    <label class="mt-3 font-weight-light">Incident Conclusion:</label>
+    <div class="ml-3">{{ incident.conclusion }}</div>
+
+</div>
