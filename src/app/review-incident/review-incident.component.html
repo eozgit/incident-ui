@@ -102,7 +102,7 @@
             <div formGroupName="actions">
                 <div class="form-group" *ngFor="let person of personsExperiencing; let i = index">
                     <label>{{ person.name }}</label>
-                    <select [formControlName]="person.id" class="custom-select" required>
+                    <select [formControlName]="person.id" class="custom-select action" required>
                         <option value="" disabled>Select</option>
                         <option *ngFor="let action of constants.actions" [value]="action">{{ action }}</option>
                     </select>
@@ -112,7 +112,7 @@
             <div formGroupName="actions">
                 <div class="form-group" *ngFor="let person of personsDisplaying; let i = index">
                     <label>{{ person.name }}</label>
-                    <select [formControlName]="person.id" class="custom-select" required>
+                    <select [formControlName]="person.id" class="custom-select action" required>
                         <option value="" disabled>Select</option>
                         <option *ngFor="let action of constants.actions" [value]="action">{{ action }}</option>
                     </select>
