@@ -1,3 +1,5 @@
+const { getAddParameters, getReviewParameters, getAddParameters2, randomAction } = require("../support")
+
 describe('Add and review incident forms', () => {
     it('should create a record in the system when submitted', () => {
         cy.visit('http://localhost:4200/')
@@ -6,23 +8,30 @@ describe('Add and review incident forms', () => {
 
         cy.url().should('include', '/add')
 
-        cy.get('select[formcontrolname="reportedTo"]').select('Rubeus Hagrid')
+        const { reportedTo, location, incidentDate, reportedBy, pupilsExperiencing, staffExperiencing,
+            pupilsDisplaying, staffDisplaying, nature, detail } = getAddParameters();
 
-        cy.get('select[formcontrolname="location"]').select('The Burrow')
+        cy.get('select[formcontrolname="reportedTo"]').select(reportedTo)
+
+        cy.get('select[formcontrolname="location"]').select(location)
 
         cy.get('button[type="button"]').click()
 
-        cy.get('div[aria-label="Monday, September 7, 2020"]').click()
+        cy.get(`div[aria-label="${incidentDate}"]`).click()
 
-        cy.get('textarea[formcontrolname="reportedBy"]').type('Newt Scamander')
+        cy.get('textarea[formcontrolname="reportedBy"]').type(reportedBy)
 
-        cy.get('select[formcontrolname="pupilsExperiencing"]').select(['Harry Potter', 'Ronald Weasley'])
+        if (pupilsExperiencing.length) cy.get('select[formcontrolname="pupilsExperiencing"]').select(pupilsExperiencing)
 
-        cy.get('select[formcontrolname="pupilsDisplaying"]').select(['Draco Malfoy', 'Terry Boot'])
+        if (staffExperiencing.length) cy.get('select[formcontrolname="staffExperiencing"]').select(staffExperiencing)
 
-        cy.get('select[formcontrolname="nature"]').select('Trip up')
+        if (pupilsDisplaying.length) cy.get('select[formcontrolname="pupilsDisplaying"]').select(pupilsDisplaying)
 
-        cy.get('textarea[formcontrolname="detail"]').type('Poor Harry!')
+        if (staffDisplaying.length) cy.get('select[formcontrolname="staffDisplaying"]').select(staffDisplaying)
+
+        cy.get('select[formcontrolname="nature"]').select(nature)
+
+        cy.get('textarea[formcontrolname="detail"]').type(detail)
 
         cy.get('button[type="submit"]').click()
 
@@ -33,23 +42,36 @@ describe('Add and review incident forms', () => {
 
         cy.url().should('include', '/review')
 
-        cy.get('select[formcontrolname="reviewer"]').select('Severus Snape')
+        const { reviewer, completeDate, experiencingConcernsListenedTo, experiencingSatisfied,
+            displayingConcernsListenedTo, displayingSatisfied, procedures, conclusion } = getReviewParameters();
+
+        cy.get('select[formcontrolname="reviewer"]').select(reviewer)
 
         cy.get('button[type="button"]').click()
 
-        cy.get('div[aria-label="Tuesday, September 8, 2020"]').click()
+        cy.get(`div[aria-label="${completeDate}"]`).click()
 
-        cy.get('input[formcontrolname="experiencingConcernsListenedTo"]').check()
+        if (experiencingConcernsListenedTo) cy.get('input[formcontrolname="experiencingConcernsListenedTo"]').check()
 
-        cy.get('input[formcontrolname="displayingSatisfied"]').check()
+        if (experiencingSatisfied) cy.get('input[formcontrolname="experiencingSatisfied"]').check()
 
-        cy.get('textarea[formcontrolname="procedures"]').type('Had a fatherly talk with the pupils.')
+        if (displayingConcernsListenedTo) cy.get('input[formcontrolname="displayingConcernsListenedTo"]').check()
 
-        cy.get('select[formcontrolname="conclusion"]').select('Resolved')
+        if (displayingSatisfied) cy.get('input[formcontrolname="displayingSatisfied"]').check()
 
-        cy.get('select.action').eq(0).select('Counselling')
+        cy.get('textarea[formcontrolname="procedures"]').type(procedures)
 
-        cy.get('select.action').eq(3).select('Peer Support')
+        cy.get('select[formcontrolname="conclusion"]').select(conclusion)
+
+        const partiesCount = pupilsExperiencing.length + staffExperiencing.length + pupilsDisplaying.length + staffDisplaying.length;
+
+        for (let i = 0; i < partiesCount; i++) {
+            if (Math.random() > .6) {
+                continue;
+            }
+
+            cy.get('select.action').eq(i).select(randomAction())
+        }
 
         cy.get('button[type="submit"]').click()
 
