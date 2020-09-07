@@ -1,27 +1,45 @@
-# IncidentUi
+### Incident Management
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.8.
+##### Incident Management app for educational establishments
 
-## Development server
+A clone of the incident management pages in the bullying and equalities module on SEEMIS
+as described in [this document](https://www.abernet.org/mis/wp-content/uploads/sites/5/2017/03/How-to-Record-Incident.pdf) on abernet<span>.</span>org
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+##### Preview
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<img src='./Incident.gif' alt='Incident Management preview' />
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+##### See in HD
 
-## Running unit tests
+<a href="https://youtu.be/iVAnXHEknqc">
+  <img src="./Incident.png" alt="Incident Management" width="428" />
+</a>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+[Backend Code](https://github.com/eozgit/incident)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+[Frontend Code](https://github.com/eozgit/incident-ui)
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+###### Stack
+-   Angular 10
+-   Java
+-   Quarkus
+-   Postgres
+-   Docker
+-   AWS CodeCommit
+-   AWS CodeBuild
+-   AWS CodePipeline
+-   Amazon S3
+-   AWS Lambda
+-   Amazon API Gateway
+-   Amazon RDS
+
+
+###### Features
+-   List incidents
+-   Add incident
+-   Review/Update incident
+-   View incident

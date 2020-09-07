@@ -2,6 +2,26 @@ import * as constants from '../../src/app/constants';
 
 const dateFormatter = new Intl.DateTimeFormat('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
+const reporters = [
+    'Newt Scamander',
+    'Tina Goldstein',
+    'Jacob Kowalski',
+    'Queenie Goldstein'
+];
+
+const details = [
+    'Not cool!',
+    'Naughty boy!',
+    'Poor kid.'
+];
+
+const procedures = [
+    'Actions taken after investigation and discussion with parents',
+    'Talked with them and any other persons involved',
+    'Listened to their point of view',
+    'Set up a training or development plan',
+];
+
 export function getAddParameters() {
     return {
         reportedTo: getStaffMember(),
@@ -59,29 +79,15 @@ function getConclusion() {
 }
 
 function getPerson() {
-    return getRandomElement([
-        'Newt Scamander',
-        'Tina Goldstein',
-        'Jacob Kowalski',
-        'Queenie Goldstein'
-    ]);
+    return getRandomElement(reporters);
 }
 
 function getDetail() {
-    return getRandomElement([
-        'Not cool!',
-        'Naughty boy!',
-        'Poor kid.'
-    ]);
+    return getRandomElement(details);
 }
 
 function getProcedures() {
-    return getRandomElement([
-        'Actions taken after investigation and discussion with parents',
-        'Talked with them and any other persons involved',
-        'Listened to their point of view',
-        'Set up a training or development plan',
-    ]);
+    return getRandomElement(procedures);
 }
 
 function getCheck() {
@@ -104,7 +110,6 @@ function getRandomElements(arr) {
         const [el] = cp.splice(idx, 1);
         val.push(el);
     }
-    console.log(val)
     return val;
 }
 
